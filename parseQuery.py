@@ -22,14 +22,17 @@ def get_queries():
 
 #takes in a query as a string and returns keywords
 def parseQuery(queries):
+	#keywords are numbers, adjectives, nouns, and verbs... https://cs.nyu.edu/grishman/jet/guide/PennPOS.html
+	keyword_POS=['CD','JJ','JJR','JJS','NN','NNS','NNP','NNPS','VB','VBD','VBG','VBN','VBP','VBZ',]
 	query_stems = []
+	
 	for q in queries:
 		q = tb(q)
 		qtags=q.tags
-		#q_stemmed=[w[0].encode('utf-8') for w in qtags]
+		query_stems=[w[0].encode('utf-8') for w in qtags if w[1] in keyword_POS]
 		#q_stemmed=[(PorterStemmer().stem_word(w[0].encode('utf-8')),w[1]) for w in qtags]
 		#query_stems.append(q_stemmed)
-	return qtags
+	return query_stems
 
 def main():
 	queries = get_queries()
