@@ -29,10 +29,10 @@ def parseQuery(queries):
 	for q in queries:
 		q = tb(q)
 		qtags=q.tags
-		query_stems=[w[0].encode('utf-8') for w in qtags if w[1] in keyword_POS]
+		query_wtags=[w[0].encode('utf-8') for w in qtags if w[1] in keyword_POS]
 		#q_stemmed=[(PorterStemmer().stem_word(w[0].encode('utf-8')),w[1]) for w in qtags]
 		query_stems.append(query_stems)
-	return query_stems
+	return query_wtags
 
 def main():
 	queries = get_queries()
